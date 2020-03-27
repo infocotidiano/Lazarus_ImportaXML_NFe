@@ -1,0 +1,927 @@
+object frmprincipal: Tfrmprincipal
+  Left = 289
+  Height = 514
+  Top = 130
+  Width = 893
+  Caption = 'ImportaXML'
+  ClientHeight = 514
+  ClientWidth = 893
+  LCLVersion = '1.6.4.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 893
+    Align = alTop
+    ClientHeight = 50
+    ClientWidth = 893
+    TabOrder = 0
+    object edtXML: TEdit
+      Left = 80
+      Height = 23
+      Top = 16
+      Width = 624
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Left = 22
+      Height = 15
+      Top = 21
+      Width = 49
+      Caption = 'Arq. XML'
+      ParentColor = False
+    end
+    object Button1: TButton
+      Left = 719
+      Height = 25
+      Top = 14
+      Width = 75
+      Caption = 'Abrir'
+      OnClick = Button1Click
+      TabOrder = 1
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 464
+    Top = 50
+    Width = 893
+    Align = alClient
+    ClientHeight = 464
+    ClientWidth = 893
+    TabOrder = 1
+    object DBGrid1: TDBGrid
+      Left = 1
+      Height = 119
+      Top = 1
+      Width = 891
+      Align = alTop
+      Color = clWindow
+      Columns = <>
+      DataSource = DsCAB
+      TabOrder = 0
+    end
+    object DBGrid2: TDBGrid
+      Left = 1
+      Height = 318
+      Top = 145
+      Width = 891
+      Align = alClient
+      Color = clWindow
+      Columns = <      
+        item
+          Title.Caption = 'NRONOTA'
+          Width = 70
+          FieldName = 'NRONOTA'
+        end      
+        item
+          Title.Caption = 'ITEM'
+          Width = 60
+          FieldName = 'ITEM'
+        end      
+        item
+          Title.Caption = 'BARRAS'
+          Width = 90
+          FieldName = 'BARRAS'
+        end      
+        item
+          Title.Caption = 'CODPROD'
+          Width = 90
+          FieldName = 'CODPROD'
+        end      
+        item
+          Title.Caption = 'DESCRICAO'
+          Width = 280
+          FieldName = 'DESCRICAO'
+        end      
+        item
+          Title.Caption = 'CFOP'
+          Width = 90
+          FieldName = 'CFOP'
+        end      
+        item
+          Title.Caption = 'NCM'
+          Width = 90
+          FieldName = 'NCM'
+        end      
+        item
+          Title.Caption = 'UNIDADE'
+          Width = 90
+          FieldName = 'UNIDADE'
+        end      
+        item
+          Title.Caption = 'VALUNI'
+          FieldName = 'VALUNI'
+        end      
+        item
+          Title.Caption = 'QUANTIDADE'
+          FieldName = 'QUANTIDADE'
+        end      
+        item
+          Title.Caption = 'DESCONTO'
+          FieldName = 'DESCONTO'
+        end      
+        item
+          Title.Caption = 'TOTALITEM'
+          FieldName = 'TOTALITEM'
+        end      
+        item
+          Title.Caption = 'ICMS_CST'
+          Width = 90
+          FieldName = 'ICMS_CST'
+        end      
+        item
+          Title.Caption = 'ICMS_CSOSN'
+          Width = 90
+          FieldName = 'ICMS_CSOSN'
+        end      
+        item
+          Title.Caption = 'ICMS_PER'
+          FieldName = 'ICMS_PER'
+        end      
+        item
+          Title.Caption = 'ICMS_VAL'
+          FieldName = 'ICMS_VAL'
+        end      
+        item
+          Title.Caption = 'PIS_CST'
+          Width = 90
+          FieldName = 'PIS_CST'
+        end      
+        item
+          Title.Caption = 'PIS_PER'
+          FieldName = 'PIS_PER'
+        end      
+        item
+          Title.Caption = 'PIS_VAL'
+          FieldName = 'PIS_VAL'
+        end      
+        item
+          Title.Caption = 'COFINS_CST'
+          Width = 90
+          FieldName = 'COFINS_CST'
+        end      
+        item
+          Title.Caption = 'COFINS_PER'
+          FieldName = 'COFINS_PER'
+        end      
+        item
+          Title.Caption = 'COFINS_VAL'
+          FieldName = 'COFINS_VAL'
+        end>
+      DataSource = DsITE
+      TabOrder = 1
+    end
+    object DBNavigator1: TDBNavigator
+      Left = 1
+      Height = 25
+      Top = 120
+      Width = 891
+      Align = alTop
+      BevelOuter = bvNone
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.EnlargeVertical = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 100
+      ClientHeight = 25
+      ClientWidth = 891
+      DataSource = DsCAB
+      Options = []
+      TabOrder = 2
+    end
+  end
+  object Conexao: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Properties.Strings = (
+      'AutoEncodeStrings='
+    )
+    Connected = True
+    Port = 3050
+    Database = 'C:\Users\infocotidiano\Documents\Projetos\ImportaXML-NFe\BASE.FDB'
+    User = 'SYSDBA'
+    Password = 'masterkey'
+    Protocol = 'firebirdd-2.5'
+    left = 280
+    top = 153
+  end
+  object qrCAB: TZQuery
+    Connection = Conexao
+    UpdateObject = upCAB
+    Active = True
+    SQL.Strings = (
+      'select * from CABNFE'
+    )
+    Params = <>
+    left = 221
+    top = 235
+    object qrCABNRONFE: TLongintField
+      FieldKind = fkData
+      FieldName = 'NRONFE'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qrCABNATOPERACAO: TStringField
+      FieldKind = fkData
+      FieldName = 'NATOPERACAO'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 160
+    end
+    object qrCABEMISSAO: TDateField
+      FieldKind = fkData
+      FieldName = 'EMISSAO'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrCABSTATUS: TStringField
+      FieldKind = fkData
+      FieldName = 'STATUS'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABEMI_NOME: TStringField
+      FieldKind = fkData
+      FieldName = 'EMI_NOME'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABEMI_CNPJ: TStringField
+      FieldKind = fkData
+      FieldName = 'EMI_CNPJ'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qrCABEMI_END: TStringField
+      FieldKind = fkData
+      FieldName = 'EMI_END'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABEMI_BAI: TStringField
+      FieldKind = fkData
+      FieldName = 'EMI_BAI'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABEMI_CID: TStringField
+      FieldKind = fkData
+      FieldName = 'EMI_CID'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABDES_NOME: TStringField
+      FieldKind = fkData
+      FieldName = 'DES_NOME'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABDES_CNPJ: TStringField
+      FieldKind = fkData
+      FieldName = 'DES_CNPJ'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 60
+    end
+    object qrCABDES_END: TStringField
+      FieldKind = fkData
+      FieldName = 'DES_END'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABDES_BAI: TStringField
+      FieldKind = fkData
+      FieldName = 'DES_BAI'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qrCABDES_CID: TStringField
+      FieldKind = fkData
+      FieldName = 'DES_CID'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object qrITE: TZQuery
+    Connection = Conexao
+    UpdateObject = upITE
+    Active = True
+    SQL.Strings = (
+      'select * from CABITE'
+    )
+    Params = <>
+    MasterFields = 'NRONFE'
+    MasterSource = DsCAB
+    LinkedFields = 'NRONOTA'
+    left = 229
+    top = 308
+    object qrITENRONOTA: TLongintField
+      FieldKind = fkData
+      FieldName = 'NRONOTA'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qrITEITEM: TLongintField
+      FieldKind = fkData
+      FieldName = 'ITEM'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object qrITEBARRAS: TStringField
+      FieldKind = fkData
+      FieldName = 'BARRAS'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 52
+    end
+    object qrITECODPROD: TStringField
+      FieldKind = fkData
+      FieldName = 'CODPROD'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 52
+    end
+    object qrITEDESCRICAO: TStringField
+      FieldKind = fkData
+      FieldName = 'DESCRICAO'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 160
+    end
+    object qrITECFOP: TStringField
+      FieldKind = fkData
+      FieldName = 'CFOP'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qrITENCM: TStringField
+      FieldKind = fkData
+      FieldName = 'NCM'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object qrITEUNIDADE: TStringField
+      FieldKind = fkData
+      FieldName = 'UNIDADE'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qrITEVALUNI: TFloatField
+      FieldKind = fkData
+      FieldName = 'VALUNI'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qrITEQUANTIDADE: TFloatField
+      FieldKind = fkData
+      FieldName = 'QUANTIDADE'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qrITEDESCONTO: TFloatField
+      FieldKind = fkData
+      FieldName = 'DESCONTO'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qrITETOTALITEM: TFloatField
+      FieldKind = fkData
+      FieldName = 'TOTALITEM'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qrITEICMS_CST: TStringField
+      FieldKind = fkData
+      FieldName = 'ICMS_CST'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qrITEICMS_CSOSN: TStringField
+      FieldKind = fkData
+      FieldName = 'ICMS_CSOSN'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 24
+    end
+    object qrITEICMS_PER: TFloatField
+      FieldKind = fkData
+      FieldName = 'ICMS_PER'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object qrITEICMS_VAL: TFloatField
+      FieldKind = fkData
+      FieldName = 'ICMS_VAL'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qrITEPIS_CST: TStringField
+      FieldKind = fkData
+      FieldName = 'PIS_CST'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qrITEPIS_PER: TFloatField
+      FieldKind = fkData
+      FieldName = 'PIS_PER'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object qrITEPIS_VAL: TFloatField
+      FieldKind = fkData
+      FieldName = 'PIS_VAL'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+    object qrITECOFINS_CST: TStringField
+      FieldKind = fkData
+      FieldName = 'COFINS_CST'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object qrITECOFINS_PER: TFloatField
+      FieldKind = fkData
+      FieldName = 'COFINS_PER'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 3
+    end
+    object qrITECOFINS_VAL: TFloatField
+      FieldKind = fkData
+      FieldName = 'COFINS_VAL'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Currency = True
+      MaxValue = 0
+      MinValue = 0
+      Precision = 2
+    end
+  end
+  object upCAB: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM CABNFE'
+      'WHERE'
+      '  CABNFE.NRONFE = :OLD_NRONFE'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO CABNFE'
+      '  (NRONFE, NATOPERACAO, EMISSAO, STATUS, EMI_NOME, EMI_CNPJ, EMI_END, EMI_BAI, '
+      '   EMI_CID, DES_NOME, DES_CNPJ, DES_END, DES_BAI, DES_CID)'
+      'VALUES'
+      '  (:NRONFE, :NATOPERACAO, :EMISSAO, :STATUS, :EMI_NOME, :EMI_CNPJ, :EMI_END, '
+      '   :EMI_BAI, :EMI_CID, :DES_NOME, :DES_CNPJ, :DES_END, :DES_BAI, :DES_CID)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE CABNFE SET'
+      '  NRONFE = :NRONFE,'
+      '  NATOPERACAO = :NATOPERACAO,'
+      '  EMISSAO = :EMISSAO,'
+      '  STATUS = :STATUS,'
+      '  EMI_NOME = :EMI_NOME,'
+      '  EMI_CNPJ = :EMI_CNPJ,'
+      '  EMI_END = :EMI_END,'
+      '  EMI_BAI = :EMI_BAI,'
+      '  EMI_CID = :EMI_CID,'
+      '  DES_NOME = :DES_NOME,'
+      '  DES_CNPJ = :DES_CNPJ,'
+      '  DES_END = :DES_END,'
+      '  DES_BAI = :DES_BAI,'
+      '  DES_CID = :DES_CID'
+      'WHERE'
+      '  CABNFE.NRONFE = :OLD_NRONFE'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    left = 304
+    top = 233
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'NRONFE'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'NATOPERACAO'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'EMISSAO'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'STATUS'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'EMI_NOME'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'EMI_CNPJ'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'EMI_END'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'EMI_BAI'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'EMI_CID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DES_NOME'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DES_CNPJ'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DES_END'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DES_BAI'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DES_CID'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_NRONFE'
+        ParamType = ptUnknown
+      end>
+  end
+  object upITE: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM CABITE'
+      'WHERE'
+      '  CABITE.NRONOTA = :OLD_NRONOTA AND'
+      '  CABITE.ITEM = :OLD_ITEM'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO CABITE'
+      '  (NRONOTA, ITEM, BARRAS, CODPROD, DESCRICAO, CFOP, NCM, UNIDADE, VALUNI, '
+      '   QUANTIDADE, DESCONTO, TOTALITEM, ICMS_CST, ICMS_CSOSN, ICMS_PER, ICMS_VAL, '
+      '   PIS_CST, PIS_PER, PIS_VAL, COFINS_CST, COFINS_PER, COFINS_VAL)'
+      'VALUES'
+      '  (:NRONOTA, :ITEM, :BARRAS, :CODPROD, :DESCRICAO, :CFOP, :NCM, :UNIDADE, '
+      '   :VALUNI, :QUANTIDADE, :DESCONTO, :TOTALITEM, :ICMS_CST, :ICMS_CSOSN, '
+      '   :ICMS_PER, :ICMS_VAL, :PIS_CST, :PIS_PER, :PIS_VAL, :COFINS_CST, :COFINS_PER, '
+      '   :COFINS_VAL)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE CABITE SET'
+      '  NRONOTA = :NRONOTA,'
+      '  ITEM = :ITEM,'
+      '  BARRAS = :BARRAS,'
+      '  CODPROD = :CODPROD,'
+      '  DESCRICAO = :DESCRICAO,'
+      '  CFOP = :CFOP,'
+      '  NCM = :NCM,'
+      '  UNIDADE = :UNIDADE,'
+      '  VALUNI = :VALUNI,'
+      '  QUANTIDADE = :QUANTIDADE,'
+      '  DESCONTO = :DESCONTO,'
+      '  TOTALITEM = :TOTALITEM,'
+      '  ICMS_CST = :ICMS_CST,'
+      '  ICMS_CSOSN = :ICMS_CSOSN,'
+      '  ICMS_PER = :ICMS_PER,'
+      '  ICMS_VAL = :ICMS_VAL,'
+      '  PIS_CST = :PIS_CST,'
+      '  PIS_PER = :PIS_PER,'
+      '  PIS_VAL = :PIS_VAL,'
+      '  COFINS_CST = :COFINS_CST,'
+      '  COFINS_PER = :COFINS_PER,'
+      '  COFINS_VAL = :COFINS_VAL'
+      'WHERE'
+      '  CABITE.NRONOTA = :OLD_NRONOTA AND'
+      '  CABITE.ITEM = :OLD_ITEM'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    left = 296
+    top = 307
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'NRONOTA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ITEM'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'BARRAS'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'CODPROD'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DESCRICAO'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'CFOP'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'NCM'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'UNIDADE'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'VALUNI'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'QUANTIDADE'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'DESCONTO'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'TOTALITEM'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ICMS_CST'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ICMS_CSOSN'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ICMS_PER'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ICMS_VAL'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'PIS_CST'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'PIS_PER'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'PIS_VAL'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'COFINS_CST'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'COFINS_PER'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'COFINS_VAL'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_NRONOTA'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_ITEM'
+        ParamType = ptUnknown
+      end>
+  end
+  object DsCAB: TDataSource
+    DataSet = qrCAB
+    left = 399
+    top = 234
+  end
+  object DsITE: TDataSource
+    DataSet = qrITE
+    left = 380
+    top = 320
+  end
+  object OpenDialog1: TOpenDialog
+    left = 84
+    top = 154
+  end
+  object NF: TACBrNFe
+    Configuracoes.Geral.SSLLib = libNone
+    Configuracoes.Geral.SSLCryptLib = cryNone
+    Configuracoes.Geral.SSLHttpLib = httpNone
+    Configuracoes.Geral.SSLXmlSignLib = xsNone
+    Configuracoes.Geral.FormatoAlerta = 'TAG:%TAGNIVEL% ID:%ID%/%TAG%(%DESCRICAO%) - %MSG%.'
+    Configuracoes.Arquivos.OrdenacaoPath = <>
+    Configuracoes.WebServices.UF = 'SP'
+    Configuracoes.WebServices.AguardarConsultaRet = 0
+    Configuracoes.WebServices.QuebradeLinha = '|'
+    left = 517
+    top = 296
+  end
+end

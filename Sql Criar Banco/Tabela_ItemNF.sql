@@ -1,0 +1,26 @@
+CREATE TABLE CABITE
+(
+  NRONOTA Integer NOT NULL,
+  ITEM Integer NOT NULL,
+  BARRAS Varchar(13),
+  CODPROD Varchar(13),
+  DESCRICAO Varchar(40),
+  CFOP Varchar(5),
+  NCM Varchar(10),
+  UNIDADE Varchar(3),
+  VALUNI Numeric(7,3),
+  QUANTIDADE Numeric(7,3),
+  DESCONTO Numeric(7,3),
+  TOTALITEM Numeric(7,3),
+  ICMS_CST Varchar(3),
+  ICMS_CSOSN Varchar(6),
+  ICMS_PER Numeric(7,3),
+  ICMS_VAL Numeric(7,3),
+  PIS_CST Varchar(3),
+  PIS_PER Numeric(7,3),
+  PIS_VAL Numeric(7,3),
+  COFINS_CST Varchar(3),
+  COFINS_PER Numeric(7,3),
+  COFINS_VAL Numeric(7,3),
+  CONSTRAINT PK_ITEMNFE PRIMARY KEY (NRONOTA,ITEM)
+);
